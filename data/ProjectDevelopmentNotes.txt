@@ -1,0 +1,139 @@
+
+Lista de resultados
+-------------------
+//*[@id="s-results-list-atf"]   --- mas corto y funciona
+//*[@id="atfResults"]//*[@id="s-results-list-atf"]
+
+Case Material
+-------------
+xpath del link
+Plastic
+//*[@id="leftNavContainer"]//*[contains(@class,"a-size-small a-color-base s-ref-text-link s-ref-link-cursor") and contains(text(),"Plastic")]
+Wood
+//*[@id="leftNavContainer"]//*[contains(@class,"a-size-small a-color-base s-ref-text-link s-ref-link-cursor") and contains(text(),"Wood")]
+Aluminum
+//*[@id="leftNavContainer"]//*[contains(@class,"a-size-small a-color-base s-ref-text-link s-ref-link-cursor") and contains(text(),"Aluminum")]
+Rubber
+//*[@id="leftNavContainer"]//*[contains(@class,"a-size-small a-color-base s-ref-text-link s-ref-link-cursor") and contains(text(),"Rubber")]
+Synthetic Leather
+//*[@id="leftNavContainer"]//*[contains(@class,"a-size-small a-color-base s-ref-text-link s-ref-link-cursor") and contains(text(),"Synthetic Leather")]
+Suede
+//*[@id="leftNavContainer"]//*[contains(@class,"a-size-small a-color-base s-ref-text-link s-ref-link-cursor") and contains(text(),"Suede")]
+Genuine Leather
+//*[@id="leftNavContainer"]//*[contains(@class,"a-size-small a-color-base s-ref-text-link s-ref-link-cursor") and contains(text(),"Genuine Leather")]
+
+
+xpath del checkbox
+//*[@id="leftNavContainer"]//*[@type="checkbox" and contains(text(),'Plastic'] --- MAS FACIL USAR LINK
+
+
+Min Price
+---------
+//*[@id="low-price"] ---id unico mejor encontrar por id
+Max Price
+---------
+//*[@id="high-price"] ---id unico mejor encontrar por id
+
+
+//*[@id="a-autoid-61"]/span/input ---XPATH UNICO
+a-autoid-61			  ---ID UNICO
+a-autoid-61-announce              ---ID SE REPITE DOS VECES PERO PARA EL MISMO ELEMENTO
+--- TOME LA DECISION DE USAR XPATH PORQUE ES MAS EXACTO AL ELEMENTO, LOS OTROS DOS APUNTAN AL WRAPPER DEL ELEMENTO
+
+
+visible
+present
+clickable
+
+NoSuchElementException: no such element: Unable to locate element:
+
+
+
+
+
+code to check if element 1 is displayed at search at ResultsPage.java
+at verifyResultsPresent() method
+-------------------------------------------------
+if(productElem != null) {
+			flagProdExists = true;
+			System.out.println("Search did returned some result(s)!");
+		}else {
+			flagProdExists = false;
+			System.out.println("Search did not returned any result!");
+		}
+also this has to be declared at ResultsPage.java		
+----------------------------
+private boolean flagProdExists;
+
+	@FindBy(how=How.XPATH,using=Locators.PRODUCT_ELEMENT_RESULT)
+	WebElement productElem;
+at last this has to be declared at Locators.java
+-------------------------------------------------------------------------
+public static final String PRODUCT_ELEMENT_RESULT = "//li[@id='result_0']";		
+
+resultsPage elements
+-------------------------------------------------------------------------
+//li[@id='result_0'] ---- unique for item
+
+
+Element:
+<a class="a-link-normal a-text-normal" href="/gp/slredirect/picassoRedirect.html/ref=pa_sp_atf_computers_sr_pg1_1?ie=UTF8&amp;adId=A0018037RYP5LE67I31I&amp;url=https%3A%2F%2Fwww.amazon.com%2FeTopxizu-Weight-Convertible-Handle-9-7-inch%2Fdp%2FB077G169Q1%2Fref%3Dsr_1_1_sspa%3Fs%3Dpc%26ie%3DUTF8%26qid%3D1513554745%26sr%3D1-1-spons%26keywords%3Dipad%2Bair%2B2%2Bcase%26psc%3D1&amp;qualifier=1513554745&amp;id=2477637686704510&amp;widgetName=sp_atf">
+<span class="a-offscreen">$16.99</span>
+<span aria-hidden="true" class="a-color-base sx-zero-spacing">
+<span class="sx-price sx-price-large">
+<sup class="sx-price-currency">$</sup>
+<span class="sx-price-whole">16</span>
+<sup class="sx-price-fractional">99</sup>
+</span>
+</span></a>
+
+Xpath:
+//li[@id='result_0']//a[@class='a-link-normal a-text-normal']   -----not unique
+
+
+
+
+
+Element descritpion:
+<a class="a-link-normal s-access-detail-page  s-color-twister-title-link a-text-normal" title="eTopxizu New iPad 9.7 2017 Case, Light Weight Shock Proof Convertible Handle Stand Slim Kids Case for Apple iPad 9.7-inch 2017 Latest Gen / iPad Air / iPad Air 2 / iPad Pro 9.7 Tablet,Rose Pink" href="/gp/slredirect/picassoRedirect.html/ref=pa_sp_atf_computers_sr_pg1_1?ie=UTF8&amp;adId=A0018037RYP5LE67I31I&amp;url=https%3A%2F%2Fwww.amazon.com%2FeTopxizu-Weight-Convertible-Handle-9-7-inch%2Fdp%2FB077G169Q1%2Fref%3Dsr_1_1_sspa%3Fs%3Dpc%26ie%3DUTF8%26qid%3D1513554745%26sr%3D1-1-spons%26keywords%3Dipad%2Bair%2B2%2Bcase%26psc%3D1&amp;qualifier=1513554745&amp;id=2477637686704510&amp;widgetName=sp_atf"><h2 data-attribute="eTopxizu New iPad 9.7 2017 Case, Light Weight Shock Proof Convertible Handle Stand Slim Kids Case for Apple iPad 9.7-inch 2017 Latest Gen / iPad Air / iPad Air 2 / iPad Pro 9.7 Tablet,Rose Pink" data-max-rows="4" class="a-size-base s-inline  s-access-title  a-text-normal"><span class="a-offscreen">[Sponsored]</span>eTopxizu New iPad 9.7 2017 Case, Light Weight Shock Proof Convertible Handle Stand Slim Kids Case for Apple iPad 9.7-inch 2017 Latest Gen / iPad Air / iPad Air 2 / iPad Pro 9.7 Tablet,Rose Pink</h2></a>
+
+Xpath
+//*[@id="result_0"]//a[@class="a-link-normal s-access-detail-page  s-color-twister-title-link a-text-normal"]   ---unique for element descritpion
+
+Element price:
+<span class="a-offscreen">$16.99</span>
+Xpath:
+//li[@id='result_0']//a[@class='a-link-normal a-text-normal']//span[@class="a-offscreen"]   ----unique for price
+
+
+
+
+
+
+
+<h2 data-attribute="Thin Apple iPad Air 2 Case - Devicewear Ridge -Slim Black Vegan Leather Case with Six Position Flip Stand and On/Off Switch" data-max-rows="4" class="a-size-base s-inline  s-access-title  a-text-normal">Thin Apple iPad Air 2 Case - Devicewear Ridge -Slim Black Vegan Leather Case with Six Position Flip Stand and On/Off Switch</h2>
+
+//*[@id="result_0"]//a//h2
+
+
+
+//*[@id="s-result-count"]
+//*[@id="s-result-count"]/text()
+
+
+//*[@id="s-result-count"]/text() ----checar que esto contenga al menos un resultado
+//*[@id="noResultsTitle"]        ----si aparece este elemento no se tuvieron resultados en la busqueda. use "charritos montaperros de guadalajara" como ejemplo
+
+of results
+
+
+
+//*[@id="s-result-count"]/
+
+
+
+more testParameter lines
+------------------------
+http://amazon.com,firefox,ipad air 2 case,Aluminum,15.0,105.0
+http://amazon.com,iexplorer,ipad air 2 case,Synthetic Leather,25.0,95.0
+http://amazon.com,chrome,ipad air 2 case,Genuine Leather,5.0,15.0
